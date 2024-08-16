@@ -21,14 +21,7 @@ app.get("/", (req, res) => {
   return res.json("From backend");
 });
 
-app.get("/hr", (req, res) => {
-  const employees = "SELECT * FROM employees";
-  db.query(employees, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
-});
-
+// Fetch all surahs
 app.get("/surahs", (req, res) => {
   const surahs = "SELECT * FROM surahs";
   db.query(surahs, (err, data) => {
@@ -37,7 +30,7 @@ app.get("/surahs", (req, res) => {
   });
 });
 
-
+// Fetch all ayahs
 app.get("/ayahs", (req, res) => {
   const ayahs = "SELECT * FROM ayahs";
   db.query(ayahs, (err, data) => {
@@ -46,6 +39,42 @@ app.get("/ayahs", (req, res) => {
   });
 });
 
+// Fetch ayahs for a specific surah
+app.get("/surah/:id/ayahs", async (req, res) => {
+  const surahId = parseInt(req.params.id, 10);
+
+  try {
+    const [rows] = await db.promise().execute(
+      `
+      SELECT
+        id AS ayah_id,
+        surah_id,
+        ayah_number,
+        ayah_arabic,
+        ayah_english
+      FROM
+        ayahs
+      WHERE
+        surah_id = ?
+      ORDER BY
+        ayah_number
+    `,
+      [surahId]
+    );
+
+    // If no ayahs are found, return a 404 error
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "No ayahs found for this surah" });
+    }
+
+    // Return the found ayahs
+    res.json({ ayahs: rows });
+  } catch (error) {
+    console.error("Error fetching ayahs:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 app.listen(PORT, () => {
-  console.log("listening");
+  console.log(`Server is listening on port ${PORT}`);
 });
