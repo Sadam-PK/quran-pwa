@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "Root123?",
-  database: "sql_hr",
+  database: "quran",
 });
 
 app.get("/", (req, res) => {
@@ -24,6 +24,23 @@ app.get("/", (req, res) => {
 app.get("/hr", (req, res) => {
   const employees = "SELECT * FROM employees";
   db.query(employees, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+app.get("/surahs", (req, res) => {
+  const surahs = "SELECT * FROM surahs";
+  db.query(surahs, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+
+app.get("/ayahs", (req, res) => {
+  const ayahs = "SELECT * FROM ayahs";
+  db.query(ayahs, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
