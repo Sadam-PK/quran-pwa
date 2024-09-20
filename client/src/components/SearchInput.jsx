@@ -2,9 +2,10 @@ import { SearchIcon } from "@heroicons/react/solid";
 
 export default function SearchInput(props) {
   return (
-    <div className="flex w-[50%] h-10 border hover:border-gray-400 border-gray-300 rounded-3xl overflow-hidden">
+    <div className="flex w-[50%] h-10 border hover:border-gray-400 border-gray-300 
+    rounded-3xl overflow-hidden">
       <a
-        href="#"
+        href="_blank"
         aria-label="Search"
         className="flex justify-center w-10 h-full bg-gray-200 border-r border-gray-300"
       >

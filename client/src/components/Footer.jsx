@@ -6,7 +6,6 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
@@ -73,22 +72,22 @@ export default function Footer() {
           <div className="text-white">
             <ul className="flex flex-row space-x-5 py-5">
               <li className="text-xl">
-                <a href="#">
+                <a href="_blank">
                   <FontAwesomeIcon icon={faFacebook} />
                 </a>
               </li>
               <li className="text-xl">
-                <a href="#">
+                <a href="_blank">
                   <FontAwesomeIcon icon={faInstagram} />
                 </a>
               </li>
               <li className="text-xl">
-                <a href="#">
+                <a href="_blank">
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
               </li>
               <li className="text-xl">
-                <a href="#">
+                <a href="_blank">
                   <FontAwesomeIcon icon={faYoutube} />
                 </a>
               </li>

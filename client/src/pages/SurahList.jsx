@@ -9,7 +9,7 @@ export let list = [];
 export default function SurahList() {
   // const [surahList, setSurahList] = useState([]);
   const [surahs, setSurahs] = useState([]);
-  const [mode, setMode] = useState("online");
+  // const [mode, setMode] = useState("online");
 
   // Fetching and storing data in Dexie
 
@@ -42,7 +42,7 @@ export default function SurahList() {
       } catch (error) {
         const response = await db.table("surahs").toArray();
         setSurahs(response);
-        setMode("offline");
+        // setMode("offline");
       }
     }
 

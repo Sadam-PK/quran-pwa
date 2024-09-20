@@ -25,7 +25,7 @@ export default function SurahDetails() {
       }
     }
     fetchData();
-  }, []);
+  }, [id]);
 
   // --------- saving current surah ---------
 

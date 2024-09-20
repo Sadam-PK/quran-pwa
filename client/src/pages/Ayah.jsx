@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import background1 from "../assets/endless-constellation.svg";
 import background2 from "../assets/rose-petals.svg";

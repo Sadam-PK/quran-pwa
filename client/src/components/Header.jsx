@@ -1,15 +1,14 @@
 import { MenuIcon, UserIcon } from "@heroicons/react/solid";
-import SearchInput from "./SearchInput";
 // import SurahList from "../pages/SurahList";
 
 export default function Header() {
   return (
     <div className="">
-      <div className="flex flex-row justify-between py-3 px-8 items-center bg-gray-500">
+      <div className="flex flex-row justify-between py-3 px-8 items-center bg-gray-700">
         <ul className="flex gap-2">
           {/* ------- menu button --------  */}
           <li className="pt-1 pl-5">
-            <a href="#">
+            <a href="_blank">
               <MenuIcon className="size-6 text-white" />
             </a>
           </li>
@@ -21,7 +20,7 @@ export default function Header() {
         </ul>
         <ul className="flex gap-3 justify-center items-center">
           <li>
-            <a href="#">
+            <a href="_blank">
               <UserIcon className="size-6 text-white" />
             </a>
           </li>
