@@ -54,6 +54,7 @@ export default function SurahList() {
     navigate(`/surah/${id}/ayahs`);
   };
 
+
   return (
     <div>
        <div className="flex justify-center py-10 bg-gray-400">

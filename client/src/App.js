@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 // import MySql from "./pages/mysql";
 import SurahDetails from "./pages/SurahDetails";
 import Ayah from "./pages/Ayah";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* <Route path="/mysql" element={<MySql />} /> */}
         <Route path="/surah/:id/ayahs" element={<SurahDetails />} />
         <Route path="/ayah/:id" element={<Ayah />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer/>
     </Router>
