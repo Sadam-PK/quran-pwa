@@ -19,7 +19,7 @@ export default function SurahList() {
         const data = await response.json();
         setSurahs(data);
 
-        // Calculate total pages
+        // Calculate total pages based on total objects divided by limit per page
         const totalCount = data.length;
         setTotalPages(Math.ceil(totalCount / limit));
 
@@ -49,6 +49,7 @@ export default function SurahList() {
     getSurahs();
   }, []);
 
+  // sending data to details page based on id
   const navigate = useNavigate();
   const handleClick = (id) => {
     navigate(`/surah/${id}/ayahs`);
@@ -68,11 +69,8 @@ export default function SurahList() {
     }
   };
 
-  // Calculate surahs for current page
-  const currentSurahs = surahs.slice(
-    (currentPage - 1) * limit,
-    currentPage * limit
-  );
+  // Calculate surahs for current page based on set limit -- (start , end)
+  const currentSurahs = surahs.slice((currentPage - 1) * limit, currentPage * limit);
 
   return (
     <div className="h-screen">
@@ -113,7 +111,8 @@ export default function SurahList() {
           </div>
         ))}
       </div>
-      <div className="h-20"></div>
+      {/* for added some space vertically */}
+      <div className="h-20"/> 
       {surahs.length > 0 && (
         <div className="flex flex-row justify-center gap-5 items-center">
           <FontAwesomeIcon
