@@ -21,14 +21,19 @@ app.get("/", (req, res) => {
   return res.json("From backend");
 });
 
-// Fetch all surahs
+// Fetch all surahs with pagination
 app.get("/surahs", (req, res) => {
-  const surahs = "SELECT * FROM surahs";
-  db.query(surahs, (err, data) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+
+  const surahs = `SELECT * FROM surahs LIMIT ? OFFSET ?`;
+  db.query(surahs, [limit, skip], (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
 });
+
 
 // Fetch all ayahs
 app.get("/ayahs", (req, res) => {
