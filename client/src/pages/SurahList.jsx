@@ -70,18 +70,21 @@ export default function SurahList() {
   };
 
   // Calculate surahs for current page based on set limit -- (start , end)
-  const currentSurahs = surahs.slice((currentPage - 1) * limit, currentPage * limit);
+  const currentSurahs = surahs.slice(
+    (currentPage - 1) * limit,
+    currentPage * limit
+  );
 
   return (
-    <div className="h-screen">
+    <div className="">
       <div className="flex justify-center py-10 bg-gray-400">
         <SearchInput placeholder="Find an Ayah?" />
       </div>
-      <div className="h-20"></div>
-      <div className="px-24">
+      <div className="h-10 sm:h-20"/>
+      <div className="px-12 sm:px-24">
         <h2 className="font-bold">Surah List</h2>
       </div>
-      <div className="grid grid-cols-3 py-2 px-20">
+      <div className="grid grid-cols-1 sm:grid sm:grid-cols-3 py-2 px-10 sm:px-20">
         {currentSurahs.map((e) => (
           <div
             key={e.id}
@@ -112,7 +115,7 @@ export default function SurahList() {
         ))}
       </div>
       {/* for added some space vertically */}
-      <div className="h-20"/> 
+      <div className="h-20" />
       {surahs.length > 0 && (
         <div className="flex flex-row justify-center gap-5 items-center">
           <FontAwesomeIcon

@@ -38,22 +38,23 @@ export default function Ayah() {
     return <div>Error: Ayah not found</div>;
   }
   return (
-    <div className="flex  mx-auto">
-      <div className="flex w-[5vw]  mx-auto justify-end pt-32">
+    <div className="flex flex-col sm:flex-row mx-auto">
+      {/* renders social icons at a sidebar for web view and hides for mobile view*/}
+      <div className="flex-col sm:flex-row w-[5vw] mx-auto justify-end pt-32 sm:block hidden">
         <ul className="space-y-5">
-          <li>
-            <FontAwesomeIcon
-              icon={faWhatsapp}
-              size="2x"
-              color="green"
-              className="cursor-pointer"
-            />
-          </li>
           <li>
             <FontAwesomeIcon
               icon={faFacebook}
               size="2x"
               color="blue"
+              className="cursor-pointer"
+            />
+          </li>
+          <li>
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              size="2x"
+              color="green"
               className="cursor-pointer"
             />
           </li>
@@ -67,9 +68,11 @@ export default function Ayah() {
           </li>
         </ul>
       </div>
-      <div className="flex w-[90vw]">
+
+      {/* center div for showing data */}
+      <div className="flex mx-auto w-[90vw] sm:w-[70vw]">
         <div
-          className="relative flex flex-col justify-between items-center gap-3 w-[70%] 
+          className="relative flex flex-col justify-between items-center gap-3 w-[90vw] sm:w-[80vw] 
       mx-auto p-10 text-white mb-40 rounded-xl h-[80vh] mt-10"
           style={{
             backgroundImage: background,
@@ -78,7 +81,7 @@ export default function Ayah() {
             backgroundPosition: "center center",
           }}
         >
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center justify-center pt-20">
             <div className="font-thin p-5">
               <p>
                 {currentSurah.ayahs[id - 1].surah_id +
@@ -87,11 +90,11 @@ export default function Ayah() {
               </p>
             </div>
 
-            <div className="text-3xl font-bold">
+            <div className="sm:text-3xl text-xl font-bold text-right">
               {currentSurah.ayahs[id - 1].ayah_arabic}
             </div>
 
-            <div className="text-2xl py-2 font-thin">
+            <div className="sm:text-2xl py-2 font-thin text-left">
               <p>{currentSurah.ayahs[id - 1].ayah_english}</p>
             </div>
             <button
@@ -121,7 +124,37 @@ export default function Ayah() {
           {/* ----------- button to change background ------------ */}
         </div>
       </div>
-      <div className="flex w-[5vw mx-auto"></div>
+
+      {/* renders social icons at bottom for mobile view and hiddens at bottom for web view */}
+      <div className="flex mx-auto justify-end sm:hidden p-5">
+        <ul className="flex flex-row items-center justify-center gap-5">
+          <li>
+            <FontAwesomeIcon
+              icon={faFacebook}
+              size="2x"
+              color="blue"
+              className="cursor-pointer"
+            />
+          </li>
+          <li>
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              size="2x"
+              color="green"
+              className="cursor-pointer"
+            />
+          </li>
+          <li>
+            <FontAwesomeIcon
+              icon={faXTwitter}
+              size="2x"
+              color="dark"
+              className="cursor-pointer"
+            />
+          </li>
+        </ul>
+      </div>
+      <div className="flex w-[5vw mx-auto sm:block" />
     </div>
   );
 }

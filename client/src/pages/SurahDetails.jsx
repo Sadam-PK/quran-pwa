@@ -9,9 +9,6 @@ export let currentSurah = { ayahs: [] };
 export default function SurahDetails() {
   const [surahDetails, setSurahDetails] = useState();
   const { id } = useParams();
-  // const surah = list.find((item) => item.id === parseInt(id));
-
-  // currentSurah = surah || { ayahs: [] };
 
   useEffect(() => {
     async function fetchData() {
@@ -34,8 +31,8 @@ export default function SurahDetails() {
   }
   const navigate = useNavigate();
   const handleClick = (ayahId) => {
-    console.log('ayahid = ' + ayahId);
-    
+    console.log("ayahid = " + ayahId);
+
     navigate(`/ayah/${ayahId}`);
   };
   console.log(surahDetails + "surah Details");
@@ -49,7 +46,8 @@ export default function SurahDetails() {
       <div className="text-center font-bold p-5">{surahDetails.name}</div>
       {surahDetails.ayahs.map((ayah, i) => (
         <div
-          className="flex flex-col p-5 border m-2 rounded-md w-[70%] hover:border-gray-400"
+          className="flex flex-col p-5 border m-2 rounded-md sm:w-[70vw]
+           hover:border-gray-400  w-[85vw] bg-gray-50 h-auto gap-5"
           onClick={() => handleClick(ayah.ayah_number)}
           key={i}
         >
