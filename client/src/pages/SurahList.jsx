@@ -15,12 +15,15 @@ export default function SurahList() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/surahs");
+        // Fetch surahs from the backend with page and limit query params
+        const response = await fetch(
+          `http://localhost:5000/surahs?page=${currentPage}&limit=${limit}`
+        );
         const data = await response.json();
         setSurahs(data);
 
-        // Calculate total pages based on total objects divided by limit per page
-        const totalCount = data.length;
+        // Assuming your backend also returns the total number of surahs
+        const totalCount = 114; // Total surahs, or fetch from the backend if available
         setTotalPages(Math.ceil(totalCount / limit));
 
         // Store data in Dexie
@@ -32,9 +35,9 @@ export default function SurahList() {
       }
     }
     fetchData();
-  }, []);
+  }, [currentPage]); // Refetch data when the current page changes
 
-  // Displaying data from Dexie
+  // Displaying data from Dexie for offline use
   useEffect(() => {
     async function getSurahs() {
       try {
@@ -49,7 +52,6 @@ export default function SurahList() {
     getSurahs();
   }, []);
 
-  // sending data to details page based on id
   const navigate = useNavigate();
   const handleClick = (id) => {
     navigate(`/surah/${id}/ayahs`);
@@ -69,23 +71,17 @@ export default function SurahList() {
     }
   };
 
-  // Calculate surahs for current page based on set limit -- (start , end)
-  const currentSurahs = surahs.slice(
-    (currentPage - 1) * limit,
-    currentPage * limit
-  );
-
   return (
     <div className="">
       <div className="flex justify-center py-10 bg-gray-400">
         <SearchInput placeholder="Find an Ayah?" />
       </div>
-      <div className="h-10 sm:h-20"/>
+      <div className="h-10 sm:h-20" />
       <div className="px-12 sm:px-24">
         <h2 className="font-bold">Surah List</h2>
       </div>
       <div className="grid grid-cols-1 sm:grid sm:grid-cols-3 py-2 px-10 sm:px-20">
-        {currentSurahs.map((e) => (
+        {surahs.map((e) => (
           <div
             key={e.id}
             className="m-3 p-3 border border-gray-200 rounded-md shadow-sm
@@ -138,7 +134,6 @@ export default function SurahList() {
           />
         </div>
       )}
-
       {/* for adding height */}
       <div className="h-10" />
     </div>
