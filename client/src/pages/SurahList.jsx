@@ -17,6 +17,7 @@ export default function SurahList() {
       try {
         // Fetch surahs from the backend with page and limit query params
         const response = await fetch(
+          // pass in your endpoint name to fetch all the surahs (your endpoint name can be different)
           `http://localhost:5000/surahs?page=${currentPage}&limit=${limit}`
         );
         const data = await response.json();

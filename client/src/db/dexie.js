@@ -1,10 +1,10 @@
 // frontend/src/db/dexie.js
 import Dexie from "dexie";
 
-// Define your Dexie database
+// Defines Dexie database
 const db = new Dexie("MyDatabase");
 db.version(1).stores({
-  surahs: "++id, id, name, meaning, ayahs" // Updated schema
+  surahs: "++id, id, name, meaning, ayahs" // schema
   // Add more tables as needed
 });
 
