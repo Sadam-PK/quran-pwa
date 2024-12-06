@@ -6,12 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function SurahList() {
+  // surahs array variable
   const [surahs, setSurahs] = useState([]);
+
+  //pagination variables - currentPage, totalPages, limit
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const limit = 9;
 
-  // Fetching and storing data in Dexie
+  // Fetching and storing data in Dexie for caching
   useEffect(() => {
     async function fetchData() {
       try {
@@ -53,12 +56,14 @@ export default function SurahList() {
     getSurahs();
   }, []);
 
+
+  // this navigates dynamically between surahs list for each
   const navigate = useNavigate();
   const handleClick = (id) => {
     navigate(`/surah/${id}/ayahs`);
   };
 
-  // Prev page
+  // Prev page -- pagination buttons
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -75,12 +80,17 @@ export default function SurahList() {
   return (
     <div className="">
       <div className="flex justify-center py-10 bg-gray-400">
+        {/* custom button for search */}
         <SearchInput placeholder="Find an Ayah?" />
       </div>
+      {/* div for height */}
       <div className="h-10 sm:h-20" />
+
       <div className="px-12 sm:px-24">
         <h2 className="font-bold">Surah List</h2>
       </div>
+
+      {/* map through surahs list */}
       <div className="grid grid-cols-1 sm:grid sm:grid-cols-3 py-2 px-10 sm:px-20">
         {surahs.map((e) => (
           <div
@@ -113,6 +123,7 @@ export default function SurahList() {
       </div>
       {/* for added some space vertically */}
       <div className="h-20" />
+      {/* pagination handles stuff */}
       {surahs.length > 0 && (
         <div className="flex flex-row justify-center gap-5 items-center">
           <FontAwesomeIcon

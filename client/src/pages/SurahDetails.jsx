@@ -7,9 +7,12 @@ import { useNavigate } from "react-router-dom";
 export let currentSurah = { ayahs: [] };
 
 export default function SurahDetails() {
+  // details of each surah from previous page
   const [surahDetails, setSurahDetails] = useState();
+  //dynamic route data fetching var
   const { id } = useParams();
 
+  // set details into state
   useEffect(() => {
     async function fetchData() {
       try {
